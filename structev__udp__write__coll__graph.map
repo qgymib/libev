@@ -1,0 +1,9 @@
+<map id="ev_udp_write" name="ev_udp_write">
+<area shape="rect" id="node1" title="Write request token for UDP socket." alt="" coords="110,395,209,421"/>
+<area shape="rect" id="node2" href="$group__EV__HANDLE.html#structev__handle" title="Base class for all major object." alt="" coords="60,305,142,332"/>
+<area shape="rect" id="node3" href="$group__EV__EVENT__LOOP.html#structev__loop" title="Event loop type." alt="" coords="68,216,134,243"/>
+<area shape="rect" id="node4" href="$group__EV__UTILS__LIST.html#structev__list" title="Double Linked List." alt="" coords="67,112,127,139"/>
+<area shape="rect" id="node5" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="14,7,108,33"/>
+<area shape="rect" id="node6" href="$structev__write.html" title="Write request." alt="" coords="182,112,252,139"/>
+<area shape="rect" id="node7" href="$win_8h.html#structev__buf" title="Buffer." alt="" coords="208,7,269,33"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="ev_udp_read" name="ev_udp_read">
+<area shape="rect" id="node1" title="Read request token for UDP socket." alt="" coords="110,395,206,421"/>
+<area shape="rect" id="node2" href="$group__EV__HANDLE.html#structev__handle" title="Base class for all major object." alt="" coords="62,305,144,332"/>
+<area shape="rect" id="node3" href="$group__EV__EVENT__LOOP.html#structev__loop" title="Event loop type." alt="" coords="70,216,136,243"/>
+<area shape="rect" id="node4" href="$group__EV__UTILS__LIST.html#structev__list" title="Double Linked List." alt="" coords="73,112,133,139"/>
+<area shape="rect" id="node5" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="56,7,150,33"/>
+<area shape="rect" id="node6" href="$structev__read.html" title="Read request." alt="" coords="206,164,274,191"/>
+</map>
