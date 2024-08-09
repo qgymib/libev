@@ -8,6 +8,7 @@
 3. merge `ev_file_read_sync()` with `ev_file_read()`
 4. merge `ev_file_pread_sync()` with `ev_file_pread()`
 5. merge `ev_file_write_sync()` with `ev_file_write()`
+6. merge `ev_file_pwrite_sync()` with `ev_file_pwrite()`
 
 ### Bug Fixes
 1. `ev_hrtime()` no longer require initialize event loop first.

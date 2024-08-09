@@ -187,7 +187,7 @@ TEST_F(fs, pread_pwrite)
     ASSERT_EQ_INT(ret, 0);
 
     ev_buf_t buf = ev_buf_make((void*)s_sample_data, strlen(s_sample_data));
-    ret = ev_file_pwrite(g_test_file.file, &g_test_file.token, &buf, 1, 0,
+    ret = (int)ev_file_pwrite(g_test_file.file, &g_test_file.token, &buf, 1, 0,
         _test_file_pread_pwrite_on_write_done);
     ASSERT_EQ_INT(ret, 0);
 
@@ -258,7 +258,7 @@ TEST_F(fs, read_write)
     ASSERT_EQ_INT(ret, 0);
 
     ev_buf_t buf = ev_buf_make((void*)s_sample_data, strlen(s_sample_data));
-    ret = ev_file_pwrite(g_test_file.file, &g_test_file.token, &buf, 1, 0,
+    ret = (int)ev_file_pwrite(g_test_file.file, &g_test_file.token, &buf, 1, 0,
         _test_file_read_write_on_write_done);
     ASSERT_EQ_INT(ret, 0);
 

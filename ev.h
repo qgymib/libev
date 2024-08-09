@@ -34,6 +34,7 @@
  * 3. merge `ev_file_read_sync()` with `ev_file_read()`
  * 4. merge `ev_file_pread_sync()` with `ev_file_pread()`
  * 5. merge `ev_file_write_sync()` with `ev_file_write()`
+ * 6. merge `ev_file_pwrite_sync()` with `ev_file_pwrite()`
  * 
  * ### Bug Fixes
  * 1. `ev_hrtime()` no longer require initialize event loop first.
@@ -4110,8 +4111,8 @@ EV_API void ev_pipe_close(ev_os_pipe_t fd);
 #line 97 "ev.h"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.h
-// SIZE:    14472
-// SHA-256: 2f4f22d8f06ae54ede428231a0beefeb4ca34e11a22471eb4255878b1e1a5256
+// SIZE:    14086
+// SHA-256: 000318307e4000dd512178c97e234a4936f8ffd7945e041dff20e010dc2a9585
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.h"
 #ifndef __EV_FILE_SYSTEM_H__
@@ -4452,20 +4453,8 @@ EV_API ssize_t ev_file_write(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
  * @param[in] cb        Write callback.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_pwrite(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
+EV_API ssize_t ev_file_pwrite(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     size_t nbuf, ssize_t offset, ev_file_cb cb);
-
-/**
- * @brief Like #ev_file_pwrite(), but work in synchronous mode.
- * @see ev_file_pwrite()
- * @param[in] file      File handle.
- * @param[in] bufs      Buffer list.
- * @param[in] nbuf      Buffer amount.
- * @param[in] offset    Offset of file.
- * @return              #ev_errno_t
- */
-EV_API ssize_t ev_file_pwrite_sync(ev_file_t* file, ev_buf_t bufs[], size_t nbuf,
-    ssize_t offset);
 
 /**
  * @brief Get information about a file.
