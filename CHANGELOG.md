@@ -2,6 +2,10 @@
 
 ## v0.1.1
 
+### BREAKING CHANGES
+1. merge `ev_file_init()` with `ev_file_open()`
+2. rename `ev_file_exit()` to `ev_file_close()`
+
 ### Bug Fixes
 1. `ev_hrtime()` no longer require initialize event loop first.
 

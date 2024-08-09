@@ -28,6 +28,10 @@
  * 
  * ## v0.1.1
  * 
+ * ### BREAKING CHANGES
+ * 1. merge `ev_file_init()` with `ev_file_open()`
+ * 2. rename `ev_file_exit()` to `ev_file_close()`
+ * 
  * ### Bug Fixes
  * 1. `ev_hrtime()` no longer require initialize event loop first.
  * 
@@ -274,7 +278,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/version.h
 // SIZE:    1188
-// SHA-256: 33a824ffaa7b81330b983ebd2940d59401b92bb41b733ce2bb7ed641f780942b
+// SHA-256: bfd7bf1f3f9086909608762525cb9715d9f011d5fded875e487d02d1ddee11d7
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/version.h"
 #ifndef __EV_VERSION_H__
@@ -306,7 +310,7 @@ extern "C" {
 /**
  * @brief Development version.
  */
-#define EV_VERSION_PREREL           1
+#define EV_VERSION_PREREL           2
 
 /**
  * @brief Version calculate helper macro.
