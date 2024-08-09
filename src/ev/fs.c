@@ -583,9 +583,25 @@ static int _ev_file_init(ev_loop_t* loop, ev_file_t* file)
     return 0;
 }
 
-void ev_file_exit(ev_file_t* file, ev_file_close_cb cb)
+static void _ev_file_close(ev_file_t* file)
+{
+	if (file->file != EV_OS_FILE_INVALID)
+	{
+		ev__fs_close(file->file);
+		file->file = EV_OS_FILE_INVALID;
+	}
+}
+
+void ev_file_close(ev_file_t* file, ev_file_close_cb cb)
 {
     size_t failure_count;
+
+    if (file->base.loop == NULL)
+    {
+        EV_ASSERT(cb == NULL, "file open in synchronous mode.");
+        _ev_file_close(file);
+        return;
+    }
 
     /**
      * Cancel all pending task. Do note that some tasks might be cancel failed
@@ -597,11 +613,7 @@ void ev_file_exit(ev_file_t* file, ev_file_close_cb cb)
      * It should be safe to close handle, event there are some works in
      * progress.
      */
-    if (file->file != EV_OS_FILE_INVALID)
-    {
-        ev__fs_close(file->file);
-        file->file = EV_OS_FILE_INVALID;
-    }
+    _ev_file_close(file);
 
     file->close_cb = cb;
 
@@ -636,6 +648,7 @@ int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* token, const cha
         {
             return EV_EINVAL;
         }
+        memset(file, 0, sizeof(*file));
         return ev__fs_open(&file->file, path, flags, mode);
     }
 

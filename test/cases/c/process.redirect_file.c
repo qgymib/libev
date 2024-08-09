@@ -32,7 +32,7 @@ TEST_FIXTURE_TEARDOWN(process)
 {
     if (g_test_process.file != NULL)
     {
-        ev_file_exit(g_test_process.file, NULL);
+        ev_file_close(g_test_process.file, NULL);
         ev_loop_run(g_test_process.loop, EV_LOOP_MODE_NOWAIT);
 
         ev_free(g_test_process.file);

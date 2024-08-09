@@ -4103,8 +4103,8 @@ EV_API void ev_pipe_close(ev_os_pipe_t fd);
 #line 97 "ev.h"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.h
-// SIZE:    14964
-// SHA-256: fca50237b91cbea8ec25d5968f47bb15e6f8a0068ad94958dbd4430cba72dc02
+// SIZE:    15391
+// SHA-256: c0bc25410a8d401b32746ac13f17e88189a7e0de4c3fce8b980137c3ac5a6b39
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.h"
 #ifndef __EV_FILE_SYSTEM_H__
@@ -4333,13 +4333,6 @@ struct ev_fs_req_s
     }
 
 /**
- * @brief Destroy a file handle
- * @param[in] file      File handle
- * @param[in] cb        Close callback
- */
-EV_API void ev_file_exit(ev_file_t* file, ev_file_close_cb cb);
-
-/**
  * @brief Equivalent to [open(2)](https://man7.org/linux/man-pages/man2/open.2.html).
  * 
  * The full list of \p flags are:
@@ -4360,16 +4353,32 @@ EV_API void ev_file_exit(ev_file_t* file, ev_file_close_cb cb);
  * + #EV_FS_S_IRWXU
  * 
  * @note File always open in binary mode.
- * @param[in] file      File handle.
+ * @param[in] loop      Event loop.
+ * @param[out] file     File handle.
  * @param[in] req       File token.
  * @param[in] path      File path.
  * @param[in] flags     Open flags
  * @param[in] mode      Open mode.
- * @param[in] cb        Open result callback.
+ * @param[in] cb        Open result callback. If set to NULL, the file is open
+ *   in sync mode, so \p loop, \p req must also be NULL.
  * @return              #ev_errno_t
  */
 EV_API int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* req, const char* path,
     int flags, int mode, ev_file_cb cb);
+
+/**
+ * @brief Close a file handle.
+ * 
+ * If the file is open in sync mode (the callback in #ev_file_open() is set to
+ * NULL), then this is a synchronous call. In this case \p cb must be NULL.
+ * 
+ * If the file is open in async mode, this call is also async, you must wait
+ * for \p cb to actually called to release the resource.
+ * 
+ * @param[in] file      File handle
+ * @param[in] cb        Close callback
+ */
+EV_API void ev_file_close(ev_file_t* file, ev_file_close_cb cb);
 
 /**
  * @brief Set the file position indicator for the stream pointed to by \p file.

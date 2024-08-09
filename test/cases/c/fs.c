@@ -51,7 +51,7 @@ static void _test_fs_close_file(void)
 {
     if (g_test_file.file != NULL)
     {
-        ev_file_exit(g_test_file.file, NULL);
+        ev_file_close(g_test_file.file, NULL);
         ASSERT_EQ_INT(ev_loop_run(&g_test_file.loop, EV_LOOP_MODE_NOWAIT), 0);
 
         ev_free(g_test_file.file);
