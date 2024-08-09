@@ -323,18 +323,8 @@ EV_API ssize_t ev_file_pread(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
  * @param[in] cb        Write callback.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_write(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
+EV_API ssize_t ev_file_write(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     size_t nbuf, ev_file_cb cb);
-
-/**
- * @brief Like #ev_file_pwrite(), but work in synchronous mode.
- * @see ev_file_write()
- * @param[in] file      File handle.
- * @param[in] bufs      Buffer list.
- * @param[in] nbuf      Buffer amount.
- * @return              #ev_errno_t
- */
-EV_API ssize_t ev_file_write_sync(ev_file_t* file, ev_buf_t bufs[], size_t nbuf);
 
 /**
  * @brief Write position data
