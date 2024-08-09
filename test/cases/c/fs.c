@@ -20,6 +20,7 @@ typedef struct test_file
     ev_loop_t       loop;           /**< Event loop */
     ev_file_t*      file;           /**< File handle */
     ev_fs_req_t     token;          /**< Request token */
+    ev_fs_stat_t    stat;
 }test_file_t;
 
 test_file_t         g_test_file;    /**< Global test context */
@@ -325,7 +326,7 @@ TEST_F(fs, fstat)
     ret = ev_loop_run(&g_test_file.loop, EV_LOOP_MODE_DEFAULT);
     ASSERT_EQ_INT(ret, 0);
 
-    ret = ev_file_stat(g_test_file.file, &g_test_file.token, _test_file_stat_on_stat);
+    ret = ev_file_stat(g_test_file.file, &g_test_file.token, &g_test_file.stat, _test_file_stat_on_stat);
     ASSERT_EQ_INT(ret, 0);
 
     ret = ev_loop_run(&g_test_file.loop, EV_LOOP_MODE_DEFAULT);

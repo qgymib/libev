@@ -35,6 +35,7 @@
  * 4. merge `ev_file_pread_sync()` with `ev_file_pread()`
  * 5. merge `ev_file_write_sync()` with `ev_file_write()`
  * 6. merge `ev_file_pwrite_sync()` with `ev_file_pwrite()`
+ * 7. merge `ev_file_stat_sync()` with `ev_file_stat()`
  * 
  * ### Bug Fixes
  * 1. `ev_hrtime()` no longer require initialize event loop first.
@@ -4111,8 +4112,8 @@ EV_API void ev_pipe_close(ev_os_pipe_t fd);
 #line 97 "ev.h"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.h
-// SIZE:    14584
-// SHA-256: f0467edaa1a93160da46911eae63132b4c6803c73762bcc80d2a69e9604d1ca3
+// SIZE:    14320
+// SHA-256: 94843058dbba4a14a2df28261ad6ef7abe9312fe520294d28ea613f3c313dfe5
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.h"
 #ifndef __EV_FILE_SYSTEM_H__
@@ -4322,10 +4323,10 @@ struct ev_fs_req_s
 
     union
     {
-        ev_fs_stat_t            fileinfo;       /**< File information */
+        ev_fs_stat_t*           stat;           /**< File information */
         ev_list_t               dirents;        /**< Dirent list */
         ev_buf_t                filecontent;    /**< File content */
-    }rsp;
+    } rsp;
 };
 
 #define EV_FS_REQ_INVALID \
@@ -4337,7 +4338,7 @@ struct ev_fs_req_s
         NULL,\
         EV_EINPROGRESS,\
         { { NULL, 0, 0 } },\
-        { EV_FS_STAT_INVALID },\
+        { NULL },\
     }
 
 /**
@@ -4471,16 +4472,7 @@ EV_API ssize_t ev_file_pwrite(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[]
  * @param[in] cb        Result callback.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_file_cb cb);
-
-/**
- * @brief Like #ev_file_stat(), but work in synchronous mode.
- * @see ev_file_stat()
- * @param[in] file      File handle.
- * @param[out] stat     File status.
- * @return              #ev_errno_t
- */
-EV_API int ev_file_stat_sync(ev_file_t* file, ev_fs_stat_t* stat);
+EV_API int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_fs_stat_t* stat, ev_file_cb cb);
 
 /**
  * @brief Get all entry in directory.

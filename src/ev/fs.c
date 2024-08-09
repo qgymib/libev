@@ -179,9 +179,11 @@ static int _ev_fs_init_req_as_write(ev_fs_req_t* token, ev_file_t* file,
     return 0;
 }
 
-static void _ev_fs_init_req_as_fstat(ev_fs_req_t* req, ev_file_t* file, ev_file_cb cb)
+static void _ev_fs_init_req_as_fstat(ev_fs_req_t* req, ev_file_t* file,
+    ev_fs_stat_t* stat, ev_file_cb cb)
 {
     _ev_fs_init_req(req, file, cb, EV_FS_REQ_FSTAT);
+    req->rsp.stat = stat;
 }
 
 static int _ev_fs_init_req_as_readdir(ev_fs_req_t* req, const char* path, ev_file_cb cb)
@@ -411,7 +413,7 @@ static void _ev_file_on_fstat(ev_work_t* work)
     ev_fs_req_t* req = EV_CONTAINER_OF(work, ev_fs_req_t, work_token);
     ev_file_t* file = req->file;
 
-    req->result = ev_file_stat_sync(file, &req->rsp.fileinfo);
+    req->result = ev__fs_fstat(file->file, req->rsp.stat);
 }
 
 static void _ev_fs_on_readdir(ev_work_t* work)
@@ -742,12 +744,17 @@ ssize_t ev_file_pwrite(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     return _ev_file_pwrite_template(file, req, bufs, nbuf, offset, cb, _ev_file_on_pwrite);
 }
 
-int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_file_cb cb)
+int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_fs_stat_t* stat, ev_file_cb cb)
 {
     int ret;
     ev_loop_t* loop = file->base.loop;
+    if (loop == NULL)
+    {
+        EV_ASSERT(req == NULL && cb == NULL);
+        return ev__fs_fstat(file, stat);
+    }
 
-    _ev_fs_init_req_as_fstat(req, file, cb);
+    _ev_fs_init_req_as_fstat(req, file, stat, cb);
     ev__handle_active(&file->base);
 
     ret = ev__loop_submit_threadpool(loop, &req->work_token, EV_THREADPOOL_WORK_IO_FAST,
@@ -760,11 +767,6 @@ int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_file_cb cb)
     }
 
     return 0;
-}
-
-int ev_file_stat_sync(ev_file_t* file, ev_fs_stat_t* stat)
-{
-    return ev__fs_fstat(file->file, stat);
 }
 
 int ev_fs_readdir(ev_loop_t* loop, ev_fs_req_t* req, const char* path,
@@ -866,7 +868,7 @@ int ev_fs_remove_sync(const char* path, int recursion)
 
 ev_fs_stat_t* ev_fs_get_statbuf(ev_fs_req_t* req)
 {
-    return &req->rsp.fileinfo;
+    return req->rsp.stat;
 }
 
 void ev_fs_req_cleanup(ev_fs_req_t* req)
