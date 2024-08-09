@@ -23,7 +23,6 @@ TEST_FIXTURE_SETUP(process)
     ASSERT_EQ_INT(ev_loop_init(g_test_process.loop), 0);
 
     g_test_process.file = ev_calloc(1, sizeof(ev_file_t));
-    ASSERT_EQ_INT(ev_file_init(g_test_process.loop, g_test_process.file), 0);
 
     g_test_process.self_exe_path = mmc_strdup(test_get_self_exe());
     g_test_process.process = ev_calloc(1, sizeof(ev_process_t));
@@ -73,7 +72,8 @@ TEST_F(process, redirect_file)
 {
     int ret;
     
-    ret = ev_file_open(g_test_process.file,
+    ret = ev_file_open(g_test_process.loop,
+        g_test_process.file,
         &g_test_process.token,
         TEST_PROCESS_TMPFILE_PATH,
         EV_FS_O_CREAT | EV_FS_O_WRONLY,

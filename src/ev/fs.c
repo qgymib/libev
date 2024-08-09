@@ -362,7 +362,7 @@ static void _ev_file_on_open(ev_work_t* work)
     ev_fs_req_t* req = EV_CONTAINER_OF(work, ev_fs_req_t, work_token);
     ev_file_t* file = req->file;
 
-    req->result = ev_file_open_sync(file, req->req.as_open.path,
+    req->result = ev__fs_open(&file->file, req->req.as_open.path,
         req->req.as_open.flags, req->req.as_open.mode);
 }
 
@@ -567,7 +567,13 @@ static  int _ev_fs_remove_helper(ev_dirent_t* info, void* arg)
     return helper->ret;
 }
 
-int ev_file_init(ev_loop_t* loop, ev_file_t* file)
+/**
+ * @brief Initialize a file handle
+ * @param[in] loop      Event loop
+ * @param[out] file     File handle
+ * @return              #ev_errno_t
+ */
+static int _ev_file_init(ev_loop_t* loop, ev_file_t* file)
 {
     file->file = EV_OS_FILE_INVALID;
     file->close_cb = NULL;
@@ -620,13 +626,25 @@ void ev_file_exit(ev_file_t* file, ev_file_close_cb cb)
      */
 }
 
-int ev_file_open(ev_file_t* file, ev_fs_req_t* token, const char* path,
+int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* token, const char* path,
     int flags, int mode, ev_file_cb cb)
 {
-    ev_loop_t* loop = file->base.loop;
+    int ret;
+    if (cb == NULL)
+    {
+        if (loop != NULL || token != NULL)
+        {
+            return EV_EINVAL;
+        }
+        return ev__fs_open(&file->file, path, flags, mode);
+    }
 
-    int ret = _ev_fs_init_req_as_open(token, file, path, flags, mode, cb);
-    if (ret != 0)
+    if ((ret = _ev_file_init(loop, file)) != 0)
+    {
+        return ret;
+    }
+
+    if ((ret = _ev_fs_init_req_as_open(token, file, path, flags, mode, cb)) != 0)
     {
         return ret;
     }
@@ -643,11 +661,6 @@ int ev_file_open(ev_file_t* file, ev_fs_req_t* token, const char* path,
     }
 
     return 0;
-}
-
-int ev_file_open_sync(ev_file_t* file, const char* path, int flags, int mode)
-{
-    return ev__fs_open(&file->file, path, flags, mode);
 }
 
 int ev_file_seek(ev_file_t* file, ev_fs_req_t* req, int whence, ssize_t offset, ev_file_cb cb)

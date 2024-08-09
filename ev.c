@@ -1288,8 +1288,8 @@ const char* ev_strerror(int err)
 #line 21 "ev.c"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.c
-// SIZE:    22825
-// SHA-256: 2778485e914d0ee577dc1efa994693bfcc512531f3954623f6f6713cf0873251
+// SIZE:    23091
+// SHA-256: bbe9cf46a77da134537be6d742480f3a2193fdbe576a556ac2bd252fd14728eb
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.c"
 #include <sys/stat.h>
@@ -1656,7 +1656,7 @@ static void _ev_file_on_open(ev_work_t* work)
     ev_fs_req_t* req = EV_CONTAINER_OF(work, ev_fs_req_t, work_token);
     ev_file_t* file = req->file;
 
-    req->result = ev_file_open_sync(file, req->req.as_open.path,
+    req->result = ev__fs_open(&file->file, req->req.as_open.path,
         req->req.as_open.flags, req->req.as_open.mode);
 }
 
@@ -1861,7 +1861,13 @@ static  int _ev_fs_remove_helper(ev_dirent_t* info, void* arg)
     return helper->ret;
 }
 
-int ev_file_init(ev_loop_t* loop, ev_file_t* file)
+/**
+ * @brief Initialize a file handle
+ * @param[in] loop      Event loop
+ * @param[out] file     File handle
+ * @return              #ev_errno_t
+ */
+static int _ev_file_init(ev_loop_t* loop, ev_file_t* file)
 {
     file->file = EV_OS_FILE_INVALID;
     file->close_cb = NULL;
@@ -1914,13 +1920,25 @@ void ev_file_exit(ev_file_t* file, ev_file_close_cb cb)
      */
 }
 
-int ev_file_open(ev_file_t* file, ev_fs_req_t* token, const char* path,
+int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* token, const char* path,
     int flags, int mode, ev_file_cb cb)
 {
-    ev_loop_t* loop = file->base.loop;
+    int ret;
+    if (cb == NULL)
+    {
+        if (loop != NULL || token != NULL)
+        {
+            return EV_EINVAL;
+        }
+        return ev__fs_open(&file->file, path, flags, mode);
+    }
 
-    int ret = _ev_fs_init_req_as_open(token, file, path, flags, mode, cb);
-    if (ret != 0)
+    if ((ret = _ev_file_init(loop, file)) != 0)
+    {
+        return ret;
+    }
+
+    if ((ret = _ev_fs_init_req_as_open(token, file, path, flags, mode, cb)) != 0)
     {
         return ret;
     }
@@ -1937,11 +1955,6 @@ int ev_file_open(ev_file_t* file, ev_fs_req_t* token, const char* path,
     }
 
     return 0;
-}
-
-int ev_file_open_sync(ev_file_t* file, const char* path, int flags, int mode)
-{
-    return ev__fs_open(&file->file, path, flags, mode);
 }
 
 int ev_file_seek(ev_file_t* file, ev_fs_req_t* req, int whence, ssize_t offset, ev_file_cb cb)

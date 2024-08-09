@@ -224,14 +224,6 @@ struct ev_fs_req_s
     }
 
 /**
- * @brief Initialize a file handle
- * @param[in] loop      Event loop
- * @param[out] file     File handle
- * @return              #ev_errno_t
- */
-EV_API int ev_file_init(ev_loop_t* loop, ev_file_t* file);
-
-/**
  * @brief Destroy a file handle
  * @param[in] file      File handle
  * @param[in] cb        Close callback
@@ -267,20 +259,8 @@ EV_API void ev_file_exit(ev_file_t* file, ev_file_close_cb cb);
  * @param[in] cb        Open result callback.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_open(ev_file_t* file, ev_fs_req_t* req, const char* path,
+EV_API int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* req, const char* path,
     int flags, int mode, ev_file_cb cb);
-
-/**
- * @brief Like #ev_file_open(), but work in synchronous mode.
- * @see ev_file_open()
- * @param[in] file      File handle.
- * @param[in] path      File path.
- * @param[in] flags     Open flags.
- * @param[in] mode      Open mode.
- * @return              #ev_errno_t
- */
-EV_API int ev_file_open_sync(ev_file_t* file, const char* path, int flags,
-    int mode);
 
 /**
  * @brief Set the file position indicator for the stream pointed to by \p file.
