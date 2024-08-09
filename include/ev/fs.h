@@ -260,11 +260,11 @@ EV_API int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* req, cons
 /**
  * @brief Close a file handle.
  * 
- * If the file is open in sync mode (the callback in #ev_file_open() is set to
- * NULL), then this is a synchronous call. In this case \p cb must be NULL.
+ * If the file is open in synchronous mode (the callback in #ev_file_open() is
+ * set to NULL), then this is a synchronous call. In this case \p cb must be NULL.
  * 
- * If the file is open in async mode, this call is also async, you must wait
- * for \p cb to actually called to release the resource.
+ * If the file is open in asynchronous mode, this call is also asynchronous,
+ * you must wait for \p cb to actually called to release the resource.
  * 
  * @param[in] file      File handle
  * @param[in] cb        Close callback
@@ -277,10 +277,12 @@ EV_API void ev_file_close(ev_file_t* file, ev_file_close_cb cb);
  * @see #EV_FS_SEEK_CUR
  * @see #EV_FS_SEEK_END
  * @param[in] file      File handle.
- * @param[in] req       File operation token.
+ * @param[in] req       File operation token. Must set to NULL if \p file open
+ *   in synchronous mode.
  * @param[in] whence    Direction.
  * @param[in] offset    Offset.
- * @param[in] cb        Result callback.
+ * @param[in] cb        Result callback. Must set to NULL if \p file open in
+ *   synchronous mode.
  * @return              #ev_errno_t
  */
 EV_API int ev_file_seek(ev_file_t* file, ev_fs_req_t* req, int whence,
@@ -289,8 +291,8 @@ EV_API int ev_file_seek(ev_file_t* file, ev_fs_req_t* req, int whence,
 /**
  * @brief Read data.
  * @param[in] file      File handle.
- * @param[in] req       File operation token. Set to NULL if \p file open in
- *   synchronous mode.
+ * @param[in] req       File operation token. Must set to NULL if \p file open
+ *   in synchronous mode.
  * @param[in] bufs      Buffer list.
  * @param[in] nbuf      Buffer amount.
  * @param[in] cb        Read callback. Set to NULL if \p file open in
@@ -303,11 +305,13 @@ EV_API ssize_t ev_file_read(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
 /**
  * @brief Read position data.
  * @param[in] file      File handle.
- * @param[in] req       File operation token.
+ * @param[in] req       File operation token. Must set to NULL if \p file open
+ *   in synchronous mode.
  * @param[in] bufs      Buffer list.
  * @param[in] nbuf      Buffer amount.
  * @param[in] offset    Offset of file.
- * @param[in] cb        Read callback.
+ * @param[in] cb        Read callback. Must set to NULL if \p file open in
+ *   synchronous mode.
  * @return              #ev_errno_t
  */
 EV_API ssize_t ev_file_pread(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
@@ -316,11 +320,13 @@ EV_API ssize_t ev_file_pread(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
 /**
  * @brief Write data
  * @param[in] file      File handle.
- * @param[in] req       File operation token.
+ * @param[in] req       File operation token. Must set to NULL if \p file open
+ *   in synchronous mode.
  * @param[in] bufs      Buffer list.
  * @param[in] nbuf      Buffer amount.
  * @param[in] offset    Offset of file.
- * @param[in] cb        Write callback.
+ * @param[in] cb        Write callback. Must set to NULL if \p file open in
+ *   synchronous mode.
  * @return              #ev_errno_t
  */
 EV_API ssize_t ev_file_write(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
@@ -329,11 +335,13 @@ EV_API ssize_t ev_file_write(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
 /**
  * @brief Write position data
  * @param[in] file      File handle.
- * @param[in] req       File operation token.
+ * @param[in] req       File operation token. Must set to NULL if \p file open
+ *   in synchronous mode.
  * @param[in] bufs      Buffer list.
  * @param[in] nbuf      Buffer amount.
  * @param[in] offset    Offset of file.
- * @param[in] cb        Write callback.
+ * @param[in] cb        Write callback. Must set to NULL if \p file open in
+ *   synchronous mode.
  * @return              #ev_errno_t
  */
 EV_API ssize_t ev_file_pwrite(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
