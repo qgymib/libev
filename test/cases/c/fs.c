@@ -273,7 +273,7 @@ TEST_F(fs, read_write)
     ASSERT_EQ_INT(ret, 0);
 
     buf = ev_buf_make(buffer, 4);
-    ret = ev_file_read(g_test_file.file, &g_test_file.token, &buf, 1,
+    ret = (int)ev_file_read(g_test_file.file, &g_test_file.token, &buf, 1,
         _test_file_read_write_on_read_done);
     ASSERT_EQ_INT(ret, 0);
 
@@ -283,7 +283,7 @@ TEST_F(fs, read_write)
     ASSERT_EQ_INT(ret, 0);
 
     buf = ev_buf_make(buffer, 4);
-    ret = ev_file_read(g_test_file.file, &g_test_file.token, &buf, 1,
+    ret = (int)ev_file_read(g_test_file.file, &g_test_file.token, &buf, 1,
         _test_file_read_write_on_read_done);
     ASSERT_EQ_INT(ret, 0);
 

@@ -31,6 +31,7 @@
  * ### BREAKING CHANGES
  * 1. merge `ev_file_init()` with `ev_file_open()`
  * 2. rename `ev_file_exit()` to `ev_file_close()`
+ * 3. merge `ev_file_read_sync()` with `ev_file_read()`
  * 
  * ### Bug Fixes
  * 1. `ev_hrtime()` no longer require initialize event loop first.
@@ -4107,8 +4108,8 @@ EV_API void ev_pipe_close(ev_os_pipe_t fd);
 #line 97 "ev.h"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.h
-// SIZE:    15391
-// SHA-256: c0bc25410a8d401b32746ac13f17e88189a7e0de4c3fce8b980137c3ac5a6b39
+// SIZE:    15179
+// SHA-256: b2e6d6693caa05b6d05309b348fa75be0fc9e70ab90432193be05a780ab3ddcb
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.h"
 #ifndef __EV_FILE_SYSTEM_H__
@@ -4402,24 +4403,16 @@ EV_API int ev_file_seek(ev_file_t* file, ev_fs_req_t* req, int whence,
 /**
  * @brief Read data.
  * @param[in] file      File handle.
- * @param[in] req       File operation token.
+ * @param[in] req       File operation token. Set to NULL if \p file open in
+ *   synchronous mode.
  * @param[in] bufs      Buffer list.
  * @param[in] nbuf      Buffer amount.
- * @param[in] cb        Read callback.
+ * @param[in] cb        Read callback. Set to NULL if \p file open in
+ *   synchronous mode.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_read(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
+EV_API ssize_t ev_file_read(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     size_t nbuf, ev_file_cb cb);
-
-/**
- * @brief Like #ev_file_read(), but work in synchronous mode.
- * @see ev_file_read()
- * @param[in] file      File handle.
- * @param[in] bufs      Buffer list.
- * @param[in] nbuf      Buffer amount.
- * @return              #ev_errno_t
- */
-EV_API ssize_t ev_file_read_sync(ev_file_t* file, ev_buf_t bufs[], size_t nbuf);
 
 /**
  * @brief Read position data.

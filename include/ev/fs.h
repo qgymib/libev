@@ -289,24 +289,16 @@ EV_API int ev_file_seek(ev_file_t* file, ev_fs_req_t* req, int whence,
 /**
  * @brief Read data.
  * @param[in] file      File handle.
- * @param[in] req       File operation token.
+ * @param[in] req       File operation token. Set to NULL if \p file open in
+ *   synchronous mode.
  * @param[in] bufs      Buffer list.
  * @param[in] nbuf      Buffer amount.
- * @param[in] cb        Read callback.
+ * @param[in] cb        Read callback. Set to NULL if \p file open in
+ *   synchronous mode.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_read(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
+EV_API ssize_t ev_file_read(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     size_t nbuf, ev_file_cb cb);
-
-/**
- * @brief Like #ev_file_read(), but work in synchronous mode.
- * @see ev_file_read()
- * @param[in] file      File handle.
- * @param[in] bufs      Buffer list.
- * @param[in] nbuf      Buffer amount.
- * @return              #ev_errno_t
- */
-EV_API ssize_t ev_file_read_sync(ev_file_t* file, ev_buf_t bufs[], size_t nbuf);
 
 /**
  * @brief Read position data.
