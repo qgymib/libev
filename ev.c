@@ -1405,8 +1405,8 @@ const char* ev_strerror(int err)
 #line 23 "ev.c"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.c
-// SIZE:    23400
-// SHA-256: d56fb811ea63bd63fb37837b6a4189ec31079dc47eeac83baa5d54315f229f78
+// SIZE:    23436
+// SHA-256: 5d781978fa7050ea07c0bb3aa9e0b476a96a91eb902cf117d4b9b822117fde47
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.c"
 #include <sys/stat.h>
@@ -1793,7 +1793,7 @@ static void _ev_file_on_pread(ev_work_t* work)
     ev_file_t* file = req->file;
     ev_read_t* read_req = &req->req.as_read.read_req;
 
-    req->result = ev_file_pread_sync(file, read_req->data.bufs,
+    req->result = ev__fs_preadv(file->file, read_req->data.bufs,
         read_req->data.nbuf, req->req.as_read.offset);
 }
 
@@ -2118,16 +2118,16 @@ ssize_t ev_file_read(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     return _ev_file_read_template(file, req, bufs, nbuf, 0, cb, _ev_file_on_read);
 }
 
-int ev_file_pread(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
+ssize_t ev_file_pread(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
     size_t nbuf, ssize_t offset, ev_file_cb cb)
 {
-    return _ev_file_read_template(file, req, bufs, nbuf, offset, cb, _ev_file_on_pread);
-}
+    if (file->base.loop == NULL)
+    {
+        EV_ASSERT(req == NULL && cb == NULL, "file open in synchronous mode.");
+        return ev__fs_preadv(file->file, bufs, nbuf, offset);
+    }
 
-ssize_t ev_file_pread_sync(ev_file_t* file, ev_buf_t bufs[], size_t nbuf,
-    ssize_t offset)
-{
-    return ev__fs_preadv(file->file, bufs, nbuf, offset);
+    return _ev_file_read_template(file, req, bufs, nbuf, offset, cb, _ev_file_on_pread);
 }
 
 int ev_file_write(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[],
