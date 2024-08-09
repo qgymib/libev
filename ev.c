@@ -1405,8 +1405,8 @@ const char* ev_strerror(int err)
 #line 23 "ev.c"
 ////////////////////////////////////////////////////////////////////////////////
 // FILE:    ev/fs.c
-// SIZE:    23607
-// SHA-256: af056a036e2bef852b4b903a2e98f669e0ff10729d47769247130696c2dcb7f4
+// SIZE:    23613
+// SHA-256: acf4a89fdd41a44a3877d4ef1c306b8c5a592670cf154ee136a323d43f81cbbc
 ////////////////////////////////////////////////////////////////////////////////
 #line 1 "ev/fs.c"
 #include <sys/stat.h>
@@ -2162,7 +2162,7 @@ int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_fs_stat_t* stat, ev_file_
     if (loop == NULL)
     {
         EV_ASSERT(req == NULL && cb == NULL);
-        return ev__fs_fstat(file, stat);
+        return ev__fs_fstat(file->file, stat);
     }
 
     _ev_fs_init_req_as_fstat(req, file, stat, cb);

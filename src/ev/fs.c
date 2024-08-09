@@ -751,7 +751,7 @@ int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_fs_stat_t* stat, ev_file_
     if (loop == NULL)
     {
         EV_ASSERT(req == NULL && cb == NULL);
-        return ev__fs_fstat(file, stat);
+        return ev__fs_fstat(file->file, stat);
     }
 
     _ev_fs_init_req_as_fstat(req, file, stat, cb);
