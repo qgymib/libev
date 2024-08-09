@@ -1,0 +1,4 @@
+<map id="ev_list" name="ev_list">
+<area shape="rect" id="node1" title="Double Linked List." alt="" coords="23,112,83,139"/>
+<area shape="rect" id="node2" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="5,7,100,33"/>
+</map>

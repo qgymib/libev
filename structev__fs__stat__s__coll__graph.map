@@ -1,0 +1,4 @@
+<map id="ev_fs_stat_s" name="ev_fs_stat_s">
+<area shape="rect" id="node1" title="File status information." alt="" coords="12,139,109,165"/>
+<area shape="rect" id="node2" href="$group__EV__TIME.html#structev__timespec__s" title="High&#45;accuracy time type." alt="" coords="5,5,116,32"/>
+</map>
