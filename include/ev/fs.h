@@ -251,7 +251,7 @@ struct ev_fs_req_s
  * @param[in] flags     Open flags
  * @param[in] mode      Open mode.
  * @param[in] cb        Open result callback. If set to NULL, the file is open
- *   in sync mode, so \p loop, \p req must also be NULL.
+ *   in synchronous mode, so \p loop, \p req must also be NULL.
  * @return              #ev_errno_t
  */
 EV_API int ev_file_open(ev_loop_t* loop, ev_file_t* file, ev_fs_req_t* req, const char* path,
@@ -354,7 +354,8 @@ EV_API ssize_t ev_file_pwrite(ev_file_t* file, ev_fs_req_t* req, ev_buf_t bufs[]
  * @param[in] cb        Result callback.
  * @return              #ev_errno_t
  */
-EV_API int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_fs_stat_t* stat, ev_file_cb cb);
+EV_API int ev_file_stat(ev_file_t* file, ev_fs_req_t* req, ev_fs_stat_t* stat,
+    ev_file_cb cb);
 
 /**
  * @brief Get all entry in directory.
