@@ -1,0 +1,19 @@
+<map id="ev_udp_write" name="ev_udp_write">
+<area shape="rect" id="Node000001" title="Write request token for UDP socket." alt="" coords="110,394,208,420"/>
+<area shape="poly" id="edge10_Node000001_Node000001" title=" " alt="" coords="225,399,235,407,226,415,209,418,208,413,224,411,229,407,222,403"/>
+<area shape="rect" id="Node000002" href="$group__EV__HANDLE.html#structev__handle" title="Base class for all major object." alt="" coords="61,306,142,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,343,153,392,149,395,115,346"/>
+<area shape="rect" id="Node000003" href="$group__EV__EVENT__LOOP.html#structev__loop" title="Event loop type." alt="" coords="68,217,135,243"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,258,104,305,99,305,99,258"/>
+<area shape="rect" id="Node000004" href="$group__EV__UTILS__LIST.html#structev__list" title="Double Linked List." alt="" coords="68,113,127,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="101,154,104,216,98,217,96,155"/>
+<area shape="rect" id="Node000005" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="14,8,109,33"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="47,48,31,77,16,113,8,153,9,173,13,192,29,226,50,258,91,304,87,307,45,261,24,229,8,194,4,173,3,153,11,112,26,75,42,45"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="73,47,96,112,91,114,68,49"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="126,11,135,20,127,30,109,33,109,28,125,25,130,20,122,14"/>
+<area shape="rect" id="Node000006" href="$structev__write.html" title="Write request." alt="" coords="181,113,251,139"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="95,39,123,57,201,111,198,115,120,62,92,44"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="218,155,210,252,199,312,183,371,170,395,165,393,178,369,194,311,205,251,213,154"/>
+<area shape="rect" id="Node000007" href="$win_8h.html#structev__buf" title="Buffer." alt="" coords="207,8,268,33"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="235,49,221,114,216,113,229,48"/>
+</map>

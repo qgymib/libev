@@ -1,0 +1,9 @@
+<map id="ev_tcp_read_req" name="ev_tcp_read_req">
+<area shape="rect" id="Node000001" title="Read request token for TCP socket." alt="" coords="5,187,123,213"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="139,191,149,200,141,208,123,211,123,205,139,203,144,200,136,196"/>
+<area shape="rect" id="Node000002" href="$structev__read.html" title="Read request." alt="" coords="30,98,98,124"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,140,67,187,61,187,61,140"/>
+<area shape="rect" id="Node000003" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="17,8,111,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,48,67,98,61,98,61,48"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="128,12,138,20,130,29,112,32,111,26,127,24,133,20,125,16"/>
+</map>

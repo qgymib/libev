@@ -1,0 +1,17 @@
+<map id="ev_udp_read" name="ev_udp_read">
+<area shape="rect" id="Node000001" title="Read request token for UDP socket." alt="" coords="109,394,204,420"/>
+<area shape="poly" id="edge9_Node000001_Node000001" title=" " alt="" coords="222,399,231,407,223,415,205,418,205,413,220,411,226,407,218,403"/>
+<area shape="rect" id="Node000002" href="$group__EV__HANDLE.html#structev__handle" title="Base class for all major object." alt="" coords="63,306,143,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,343,152,393,147,395,116,346"/>
+<area shape="rect" id="Node000003" href="$group__EV__EVENT__LOOP.html#structev__loop" title="Event loop type." alt="" coords="70,217,136,243"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,258,106,305,101,305,101,258"/>
+<area shape="rect" id="Node000004" href="$group__EV__UTILS__LIST.html#structev__list" title="Double Linked List." alt="" coords="74,113,133,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,154,102,163,102,193,104,216,99,217,96,193,96,163,97,154"/>
+<area shape="rect" id="Node000005" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="56,8,150,33"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="80,45,52,74,26,110,10,150,8,171,12,192,28,226,50,258,92,303,88,307,45,261,23,229,7,194,3,171,5,149,21,107,48,70,76,41"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="106,48,106,113,101,113,101,48"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="168,11,177,20,169,30,151,33,150,28,166,25,172,20,164,14"/>
+<area shape="rect" id="Node000006" href="$structev__read.html" title="Read request." alt="" coords="206,165,273,191"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="127,42,141,58,232,163,228,167,137,61,123,46"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="236,207,215,282,182,371,168,395,163,392,177,369,210,281,231,206"/>
+</map>
