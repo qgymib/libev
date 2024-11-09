@@ -1,0 +1,26 @@
+<map id="ev_async" name="ev_async">
+<area shape="rect" id="Node000001" title="Async handle type." alt="" coords="217,504,293,530"/>
+<area shape="poly" id="edge11_Node000001_Node000001" title=" " alt="" coords="310,508,320,517,311,526,294,529,293,523,309,522,315,517,307,512"/>
+<area shape="rect" id="Node000002" href="$group__EV__HANDLE.html#structev__handle" title="Base class for all major object." alt="" coords="138,414,218,439"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,449,247,503,243,506,196,453"/>
+<area shape="rect" id="Node000003" href="$group__EV__EVENT__LOOP.html#structev__loop" title="Event loop type." alt="" coords="145,325,211,351"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="180,366,180,413,175,413,175,366"/>
+<area shape="rect" id="Node000004" href="$group__EV__UTILS__LIST.html#structev__list" title="Double Linked List." alt="" coords="87,221,146,247"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="125,261,142,300,164,323,160,326,138,302,121,263"/>
+<area shape="rect" id="Node000005" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="5,116,100,141"/>
+<area shape="poly" id="edge10_Node000002_Node000005" title=" " alt="" coords="45,157,36,187,30,224,30,263,40,300,63,337,95,368,128,393,156,411,154,416,125,398,91,372,59,340,35,302,25,263,25,223,31,186,40,155"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="70,153,112,220,107,223,66,156"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="117,120,126,128,118,137,100,140,100,134,116,132,121,128,114,124"/>
+<area shape="rect" id="Node000006" href="$group__EV__EVENT__LOOP.html#structev__loop_1_1ev__loop__plt" title=" " alt="" coords="220,221,307,247"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="258,263,250,283,237,303,206,327,203,322,233,299,245,281,254,261"/>
+<area shape="rect" id="Node000007" href="$group__EV__UTILS__MAP.html#structev__map" title="Map implemented as red&#45;black tree." alt="" coords="227,116,294,141"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="264,156,266,221,260,221,259,156"/>
+<area shape="rect" id="Node000008" href="$group__EV__UTILS__MAP.html#structev__map__node" title="The node for map." alt="" coords="265,15,368,41"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="304,56,270,116,265,114,300,53"/>
+<area shape="poly" id="edge9_Node000008_Node000008" title=" " alt="" coords="385,18,394,28,386,37,369,40,368,35,384,33,389,28,381,22"/>
+<area shape="rect" id="Node000010" href="$ev_8h.html#structev__nonblock__io" title="Nonblock IO." alt="" coords="318,116,430,141"/>
+<area shape="poly" id="edge14_Node000010_Node000008" title=" " alt="" coords="333,53,369,114,364,116,329,55"/>
+<area shape="rect" id="Node000009" href="$group__EV__ASYNC.html#structev__async_1_1ev__async__plt" title=" " alt="" coords="324,273,421,299"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="362,313,264,505,259,503,357,311"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="376,157,375,273,370,273,371,157"/>
+</map>

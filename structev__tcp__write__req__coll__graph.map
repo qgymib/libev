@@ -1,0 +1,13 @@
+<map id="ev_tcp_write_req" name="ev_tcp_write_req">
+<area shape="rect" id="Node000001" title="Write request token for TCP socket." alt="" coords="148,202,269,228"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="285,207,295,215,287,223,269,226,269,220,285,218,290,215,282,211"/>
+<area shape="rect" id="Node000002" href="$ev_8h.html#structev__write" title="Write request." alt="" coords="105,113,176,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,150,201,200,197,203,157,153"/>
+<area shape="rect" id="Node000003" href="$group__EV__UTILS__LIST.html#structev__list__node" title="The list node. This node must put in your struct." alt="" coords="5,8,100,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,43,133,111,128,115,70,46"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="117,11,126,20,118,30,101,33,100,28,116,25,121,20,113,14"/>
+<area shape="rect" id="Node000004" href="$ev_8h.html#structev__buf" title="Buffer." alt="" coords="198,8,259,33"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="211,46,153,115,148,111,207,43"/>
+<area shape="rect" id="Node000005" href="$group__EV__TCP.html#structev__tcp__write__req_1_1ev__tcp__write__backend" title=" " alt="" coords="200,113,351,139"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="259,153,220,203,216,200,255,150"/>
+</map>
